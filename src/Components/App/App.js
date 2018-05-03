@@ -8,24 +8,14 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      searchResults: [
-        this.name: 'name',
-        this.artist: 'artist',
-        this.album: 'album',
-        this.id: 'id'],
+      searchResults: [],
       playlistName: 'Bills Playlist',
-      playlistTracks: [
-          this.name: 'name',
-          this.artist: 'artist',
-          this.album: 'album',
-          this.id: 'id'
-      ]};
+      playlistTracks: []};
       this.addTrack = this.addTrack.bind(this);
       this.removeTrack = this.removeTrack.bind(this);
       this.updatePlaylistName = this.updatePlaylistName.bind(this);
       this.savePlaylist = this.savePlaylist.bind(this);
       this.search = this.search.bind(this);
-
   }
 
     addTrack(track){
@@ -33,26 +23,18 @@ class App extends React.Component {
       if (myVar.find(savedTrack => savedTrack.id === track.id)) {
         return;
 } else {
-  myVar.push(track.id)
-  this.setState({
-    name: track.name,
-    artist: track.artist,
-    album: track.album,
-    id: track.id
-  })
+  myVar.push(track)
+  this.setState({playlistTracks: myVar})
 }
     }
 
     removeTrack(track){
-      if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+      let myVar = this.state.playlistTracks;
+      if (myVar.find(savedTrack => savedTrack.id === track.id)) {
         return;
       } else {
-        this.setState({
-          name: track.name,
-          artist: track.artist,
-          album: track.album,
-          id: track.id
-        })
+        myVar.pop(track)
+        this.setState({playlistTracks: myVar})
       }
     }
 
